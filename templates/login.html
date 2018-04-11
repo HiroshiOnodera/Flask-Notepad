@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block base %}
+    {{ form.csrf_token }}
+    <form name="login" action="/login" method="POST">
+        <div>{{ form.email }}</div>
+        <div>{{ form.password }}</div>
+    </form>
+    <a href="javascript:login.submit()" class="button green">ログイン</a>
+{% endblock %}

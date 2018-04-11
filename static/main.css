@@ -1,0 +1,16 @@
+
+.button {
+    padding: 7px;
+    margin: 10px 10px 10px 0px;
+    font-size: 15px;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    display: block;
+    width: 60px;
+}
+
+.green {
+    color: white;
+    background: #77aaae;
+}
