@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block base %}
+    {% for field in form.errors %}
+    {% for error in form.errors[field] %}
+        <div >{{error}}</div>
+    {% endfor %}
+    {% endfor %}
+    <form name="create_memo" action="/create_memo" method="POST">
+    </form>
+    <a href="javascript:create_memo.submit()" class="button green">+</a>
+{% endblock %}

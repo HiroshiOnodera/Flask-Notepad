@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 {% block base %}
-    {{ form.csrf_token }}
+    {% for field in form.errors %}
+    {% for error in form.errors[field] %}
+        <div >{{error}}</div>
+    {% endfor %}
+    {% endfor %}
     <form name="login" action="/login" method="POST">
+        {{ form.csrf_token }}
         <div>{{ form.email }}</div>
         <div>{{ form.password }}</div>
     </form>

@@ -7,21 +7,10 @@ this application store your memo using Flask
 
 from os import path
 import click
-from flask import render_template
 from app import create_app
-from form.login_form import LoginForm
 from model.user_model import User, DB
 
 APP = create_app(path.dirname(__file__) + '/config/config.cfg')
-
-
-@APP.route('/')
-def login_page():
-    ''' view login page
-    '''
-    form = LoginForm()
-    return render_template('login.html', form=form)
-
 
 @APP.cli.command()
 def initdb():

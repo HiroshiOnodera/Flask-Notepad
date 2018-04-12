@@ -19,5 +19,12 @@ class User(DB.Model):
         '''
         self.password = pbkdf2_sha256.hash(password)
 
+    def verify(self, password):
+        ''' check password
+        '''
+        if pbkdf2_sha256.verify(password, self.password):
+            return True
+        return False
+
     def __repr__(self):
         return '<user_id %r><email %r>' % (self.user_id, self.email)
