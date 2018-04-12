@@ -8,9 +8,10 @@ this application store your memo using Flask
 from os import path
 import click
 from app import create_app
-from model.user_model import User, DB
+from model.tables import User, DB
 
 APP = create_app(path.dirname(__file__) + '/config/config.cfg')
+
 
 @APP.cli.command()
 def initdb():
@@ -22,7 +23,6 @@ def initdb():
     DB.drop_all()
     click.echo('create all tables')
     DB.create_all()
-
     click.echo('finish')
 
 

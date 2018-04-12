@@ -28,3 +28,18 @@ class User(DB.Model):
 
     def __repr__(self):
         return '<user_id %r><email %r>' % (self.user_id, self.email)
+
+
+class Memo(DB.Model):
+    ''' Memo table
+    '''
+    memo_id = DB.Column(DB.Integer, primary_key=True)
+    user_id = DB.Column(DB.Integer, DB.ForeignKey('user.user_id'), nullable=False)
+    sentence = DB.Column(DB.String(1024), nullable=False)
+    update_date = DB.Column(DB.Date, nullable=False)
+
+    user = DB.relationship('User', backref=DB.backref('users', lazy=True))
+
+    def __repr__(self):
+        return '<memo_id %r><user_id %r><update_date %r>' \
+            % (self.memo_id, self.user_id, self.update_date)

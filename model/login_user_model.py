@@ -5,7 +5,7 @@ user model
 # -*- encoding utf-8 -*-
 
 from flask_login import UserMixin
-from model.user_model import User
+from model.tables import User
 
 class LoginUser(UserMixin, User):
     '''

@@ -7,7 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import login_user
 from flask_login import LoginManager
 from form.login_form import LoginForm
-from model.user_model import User
+from model.tables import User
 from model.login_user_model import LoginUser
 
 APP = Blueprint('login_controller', __name__)
