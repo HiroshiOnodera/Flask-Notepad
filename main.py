@@ -7,10 +7,32 @@ this application store your memo using Flask
 
 from os import path
 import click
+from flask import redirect, url_for
+from flask_login import LoginManager
 from app import create_app
 from model.tables import User, DB
+from model.login_user_model import LoginUser
 
 APP = create_app(path.dirname(__file__) + '/config/config.cfg')
+
+LOGIN_MANAGER = LoginManager()
+LOGIN_MANAGER.init_app(APP)
+
+@LOGIN_MANAGER.user_loader
+def user_loader(user_id):
+    '''
+    flask-login
+    user loader
+    '''
+    user = LoginUser.query.get(int(user_id))
+    return user
+
+
+@LOGIN_MANAGER.unauthorized_handler
+def unauthorized():
+    ''' No sessions
+    '''
+    return redirect(url_for('login_controller.top'))
 
 
 @APP.cli.command()

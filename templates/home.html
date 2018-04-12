@@ -6,6 +6,13 @@
     {% endfor %}
     {% endfor %}
     <form name="create_memo" action="/create_memo" method="POST">
+        {{ form.csrf_token }}
+        <div>
+            {{ form.sentence }}
+            <a href="javascript:create_memo.submit()" class="button green">+</a>
+        </div>
     </form>
-    <a href="javascript:create_memo.submit()" class="button green">+</a>
+    {% for pice in memo %}
+        <div>{{pice.update_date}} {{pice.sentence}}</div>
+    {% endfor %}
 {% endblock %}
