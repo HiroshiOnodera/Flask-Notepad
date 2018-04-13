@@ -4,7 +4,7 @@ login
 # -*- encoding utf-8 -*-
 from flask import render_template, Blueprint, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import login_user
+from flask_login import login_user, logout_user, login_required
 from form.login_form import LoginForm
 from model.tables import User
 from model.login_user_model import LoginUser
@@ -41,3 +41,11 @@ def login():
     user.id = users.user_id
     login_user(user)
     return redirect(url_for('memo_controller.home'))
+
+@APP.route("/logout")
+@login_required
+def logout():
+    '''logout
+    '''
+    logout_user()
+    return redirect(url_for('login_controller.top'))
