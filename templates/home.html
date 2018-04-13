@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 {% block base %}
+
     {% for field in form.errors %}
     {% for error in form.errors[field] %}
         <div >{{error}}</div>
     {% endfor %}
     {% endfor %}
+
     <form name="create_memo" action="/create_memo" method="POST">
         {{ form.csrf_token }}
         <div class="create_memo">
@@ -12,14 +14,18 @@
             <a href="javascript:create_memo.submit()" class="button green">+</a>
         </div>
     </form>
+
     {% for pice in memo %}
+    <form name="edit_memo_{{pice.memo_id}}" action="/edit_memo/{{pice.memo_id}}" method="POST">
+    </form>
     <form name="delete_memo_{{pice.memo_id}}" action="/delete_memo/{{pice.memo_id}}" method="POST">
         <div class="memo_object">
-            <div class="memo">
+            <a href="javascript:edit_memo_{{pice.memo_id}}.submit()" class="memo_line">
                 {{pice.update_date}} <br>{{pice.sentence}}
-            </div>
-            <a href="javascript:delete_memo_{{pice.memo_id}}.submit()" class="button orange">-</a>
+            </a>
+            <a href="javascript:delete_memo_{{pice.memo_id}}.submit()" class="button gray">-</a>
         </div>
     </form>
     {% endfor %}
+    <a href="/logout" class="button gray">logout</a>
 {% endblock %}

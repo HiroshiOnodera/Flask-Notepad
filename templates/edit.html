@@ -1,0 +1,52 @@
+
+{% extends "base.html" %}
+{% block base %}
+
+    {% for field in form.errors %}
+    {% for error in form.errors[field] %}
+        <div >{{error}}</div>
+    {% endfor %}
+    {% endfor %}
+
+    {% for field in edit_form.errors %}
+    {% for error in form.errors[field] %}
+        <div >{{error}}</div>
+    {% endfor %}
+    {% endfor %}
+
+    <form name="create_memo" action="/create_memo" method="POST">
+        {{ form.csrf_token }}
+        <div class="create_memo">
+            {{ form.sentence }}
+            <a href="javascript:create_memo.submit()" class="button green">+</a>
+        </div>
+    </form>
+
+
+    {% for pice in memo %}
+        {% if pice.memo_id == edit_memo_id %}
+        <form name="edit_memo" action="/change_memo/{{edit_memo_id}}" method="POST">
+            {{ edit_form.csrf_token }}
+            <div class="create_memo">
+                {{ edit_form.sentence }}
+                <a href="javascript:edit_memo.submit()" class="button orange">+</a>
+                <a href="/home" class="button gray">cancel</a>
+            </div>
+        </form>
+        {% else %}
+        
+        <form name="edit_memo_{{pice.memo_id}}" action="/edit_memo/{{pice.memo_id}}" method="POST">
+        </form>
+        <form name="delete_memo_{{pice.memo_id}}" action="/delete_memo/{{pice.memo_id}}" method="POST">
+            <div class="memo_object">
+                <a href="javascript:edit_memo_{{pice.memo_id}}.submit()" class="memo_line">
+                    {{pice.update_date}} <br>{{pice.sentence}}
+                </a>
+                <a href="javascript:delete_memo_{{pice.memo_id}}.submit()" class="button gray">-</a>
+            </div>
+        </form>
+        {% endif %}
+
+    {% endfor %}
+    <a href="/logout" class="button gray">logout</a>
+{% endblock %}

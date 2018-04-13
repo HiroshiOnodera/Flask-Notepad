@@ -55,3 +55,35 @@ def delete_memo(memo_id):
     DB.session.delete(memo)
     DB.session.commit()
     return redirect(url_for('memo_controller.home'))
+
+@APP.route('/edit_memo/<int:memo_id>', methods=['POST'])
+@login_required
+def edit_memo(memo_id):
+    ''' edit memo
+    '''
+    form = MemoForm()
+
+    edit_form = MemoForm()
+    target_memo = Memo.query.get(memo_id)
+    edit_form.sentence.data = target_memo.sentence
+
+    memo = Memo.query.filter(Memo.user_id == current_user.user_id)
+    return render_template('edit.html',\
+     memo=memo, form=form, edit_memo_id=memo_id, edit_form=edit_form)
+
+@APP.route('/change_memo/<int:memo_id>', methods=['POST'])
+@login_required
+def change_memo(memo_id):
+    '''change memo
+    '''
+    form = MemoForm()
+    if not form.validate_on_submit():
+        memo = Memo.query.filter(Memo.user_id == current_user.user_id)
+        return render_template('home.html', memo=memo, form=form)
+
+    target_memo = DB.session.query(Memo).get(memo_id)
+    target_memo.sentence = form.sentence.data
+    target_memo.update_date = datetime.date.today()
+    DB.session.commit()
+
+    return redirect(url_for('memo_controller.home'))

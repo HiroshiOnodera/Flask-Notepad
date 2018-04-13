@@ -17,7 +17,29 @@
 
 .orange {
     color: white;
-    background: #aaaaae;
+    background: rgb(241, 172, 81);
+}
+
+.gray {
+    color: white;
+    background: #aaaaac;
+}
+
+.sentence {
+    width:300px;
+}
+
+a.memo_line {
+    padding: 7px;
+    margin: 10px 10px 10px 10px;
+    font-size: 15px;
+    text-decoration: none;
+    text-align: left;
+    border-radius: 5px;
+    display: block;
+    width: 290px;
+    color: black;
+    background: #f9f9f9;
 }
 
 .create_memo {
@@ -26,18 +48,9 @@
 
 .memo_object {
     display: inline-flex;
-    margin: 10px 10px 0px 10px;
 }
 
-.memo {
-    margin: 0px 10px 0px 4px;
-    width: 300px;
-}
 
 input {
     margin: 10px;
-}
-
-.sentence {
-    width : 300px;
 }
