@@ -1,7 +1,7 @@
 
 .button {
     padding: 7px;
-    margin: 10px 10px 10px 0px;
+    margin: 10px 10px 10px 10px;
     font-size: 15px;
     text-decoration: none;
     text-align: center;
@@ -13,4 +13,31 @@
 .green {
     color: white;
     background: #77aaae;
+}
+
+.orange {
+    color: white;
+    background: #aaaaae;
+}
+
+.create_memo {
+    display: inline-flex;
+}
+
+.memo_object {
+    display: inline-flex;
+    margin: 10px 10px 0px 10px;
+}
+
+.memo {
+    margin: 0px 10px 0px 4px;
+    width: 300px;
+}
+
+input {
+    margin: 10px;
+}
+
+.sentence {
+    width : 300px;
 }

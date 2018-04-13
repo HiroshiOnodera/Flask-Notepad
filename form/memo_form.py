@@ -15,5 +15,6 @@ class MemoForm(FlaskForm):
         DataRequired(),
         Length(min=1, max=1024)
     ], render_kw={
-        'placeholder': 'メモをつくる'
+        'placeholder': 'メモをつくる',
+        'class' : 'sentence'
     })

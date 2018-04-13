@@ -7,12 +7,19 @@
     {% endfor %}
     <form name="create_memo" action="/create_memo" method="POST">
         {{ form.csrf_token }}
-        <div>
+        <div class="create_memo">
             {{ form.sentence }}
             <a href="javascript:create_memo.submit()" class="button green">+</a>
         </div>
     </form>
     {% for pice in memo %}
-        <div>{{pice.update_date}} {{pice.sentence}}</div>
+    <form name="delete_memo_{{pice.memo_id}}" action="/delete_memo/{{pice.memo_id}}" method="POST">
+        <div class="memo_object">
+            <div class="memo">
+                {{pice.update_date}} <br>{{pice.sentence}}
+            </div>
+            <a href="javascript:delete_memo_{{pice.memo_id}}.submit()" class="button orange">-</a>
+        </div>
+    </form>
     {% endfor %}
 {% endblock %}
