@@ -3,7 +3,7 @@ memo
 '''
 # -*- encoding utf-8 -*-
 import datetime
-from flask import render_template, Blueprint
+from flask import render_template, Blueprint, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import current_user, login_required
 from model.tables import Memo
@@ -45,3 +45,13 @@ def create_memo():
     memo = Memo.query.filter(Memo.user_id == current_user.user_id)
     form.sentence.data = ''
     return render_template('home.html', memo=memo, form=form)
+
+@APP.route('/delete_memo/<int:memo_id>', methods=['POST'])
+@login_required
+def delete_memo(memo_id):
+    ''' delete memo
+    '''
+    memo = DB.session.query(Memo).get(memo_id)
+    DB.session.delete(memo)
+    DB.session.commit()
+    return redirect(url_for('memo_controller.home'))
