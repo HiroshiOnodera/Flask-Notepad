@@ -18,7 +18,7 @@
         {{ form.csrf_token }}
         <div class="create_memo">
             {{ form.sentence }}
-            <a href="javascript:create_memo.submit()" class="button green">+</a>
+            <a href="javascript:create_memo.submit()" class="button green">add</a>
         </div>
     </form>
 
@@ -29,8 +29,8 @@
             {{ edit_form.csrf_token }}
             <div class="create_memo">
                 {{ edit_form.sentence }}
-                <a href="javascript:edit_memo.submit()" class="button orange">+</a>
-                <a href="/home" class="button gray">cancel</a>
+                <a href="javascript:edit_memo.submit()" class="button orange">change</a>
+                <a href="/home" class="button gray-outline">cancel</a>
             </div>
         </form>
         {% else %}
@@ -42,11 +42,11 @@
                 <a href="javascript:edit_memo_{{pice.memo_id}}.submit()" class="memo_line">
                     {{pice.update_date}} <br>{{pice.sentence}}
                 </a>
-                <a href="javascript:delete_memo_{{pice.memo_id}}.submit()" class="button gray">-</a>
+                <a href="javascript:delete_memo_{{pice.memo_id}}.submit()" class="button gray">delete</a>
             </div>
         </form>
         {% endif %}
 
     {% endfor %}
-    <a href="/logout" class="button gray">logout</a>
+    <a href="/logout" class="button gray-outline">logout</a>
 {% endblock %}
