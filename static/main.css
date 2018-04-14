@@ -25,6 +25,16 @@
     background: #aaaaac;
 }
 
+
+.gray-outline {
+    color: black;
+    background: white;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #aaaaac;
+}
+
 .sentence {
     width:300px;
 }
